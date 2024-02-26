@@ -31,6 +31,7 @@ const Navbar = () => {
                             width={28}
                             height={28}
                             alt={icon.alt}
+                            className="object-contain"
                         />
                     ))}
                 </div>
