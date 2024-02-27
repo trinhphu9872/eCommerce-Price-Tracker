@@ -1,5 +1,6 @@
 "use client"
 
+import { scapeAndStoreProduct } from "@/lib/actions";
 // import { log } from "console";
 import { url } from "inspector"
 import { FormEvent, useState } from "react"
@@ -26,7 +27,7 @@ const SearchBar = () => {
     const [searchPrompt, setSearchPrompt] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const isValidLink = isValidAmazonProductsUrl(searchPrompt)
@@ -34,6 +35,9 @@ const SearchBar = () => {
 
         try {
             setIsLoading(true)
+            // crawl
+            const product = await scapeAndStoreProduct(searchPrompt)
+
         } catch (error) {
             console.log(error);
 
